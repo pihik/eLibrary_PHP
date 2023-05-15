@@ -1,0 +1,32 @@
+/*
+Custom Css
+
+.card-container{
+    height: 400px;
+}
+.card{
+    height: 100%;
+}
+.card img{
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+.card-img{
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+}
+
+body{
+    background-image: url("assets/new_img/background.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.sticky-footer{
+    position: sticky;
+    top: 100%;
+}
