@@ -54,28 +54,19 @@ if (isset($_POST["update"]))
                         header("Location: ../../shop.php?update=empty");
                         exit();
                     } else {
-                        $sql = "SELECT * FROM books;";
+                        $sql = "UPDATE books 
+                                SET title = ?, genre = ?, author = ?, price = ?, imgName = ?
+                                WHERE id = ?";
                         $stmt = mysqli_stmt_init($conn);
                         if (!mysqli_stmt_prepare($stmt, $sql)) {
                             echo "SQL statement failed";
                         } else {
+                            $vymazat = 44;
+                            mysqli_stmt_bind_param($stmt, "sssssi", $title, $genre, $author, $price, $imageFullName, $id);
                             mysqli_stmt_execute($stmt);
-                            $result = mysqli_stmt_get_result($stmt);
-                            $rowCount = mysqli_num_rows($result);
 
-                            $sql = "UPDATE books 
-									SET title = ?, genre = ?, author = ?, price = ?, imgName = ?
-									WHERE id = ?";
-                            if (!mysqli_stmt_prepare($stmt, $sql)) {
-                                echo "SQL statement failed";
-                            } else {
-								$vymazat = 44;
-	                            mysqli_stmt_bind_param($stmt, "sssssi", $title, $genre, $author, $price, $imageFullName, $id);
-                                mysqli_stmt_execute($stmt);
-
-                                move_uploaded_file($fileTempName, $fileDestination);
-                                header("Location: ../../shop.php?update=success");
-                            }
+                            move_uploaded_file($fileTempName, $fileDestination);
+                            header("Location: ../../shop.php?update=success");
                         }
                     }
                 }
