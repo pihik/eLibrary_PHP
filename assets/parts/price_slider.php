@@ -22,6 +22,7 @@
 	if (!mysqli_stmt_prepare($stmt_max, $sql_max) || !mysqli_stmt_prepare($stmt_min, $sql_min))
 	{
 		echo "SQL statement failed!";
+		exit();
 	}
 	else
 	{
