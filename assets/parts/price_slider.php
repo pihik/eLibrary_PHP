@@ -12,6 +12,9 @@
 <?php
 	include_once "assets/parts/header.php";
 	include_once "assets/includes/dbh.inc.php";
+	if(empty($conn)){
+		$conn = new stdClass();
+	}
 	$sql_max = "SELECT MAX(price) as max_price FROM books;";
 	$sql_min = "SELECT MIN(price) as min_price FROM books;";
 	$stmt_max = mysqli_stmt_init($conn);

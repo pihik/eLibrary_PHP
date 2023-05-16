@@ -7,6 +7,9 @@ if (isset($_POST["register"])) {
 
 	require_once "dbh.inc.php";
 	require_once "functions.inc.php";
+	if(empty($conn)){
+		$conn = new stdClass();
+	}
 
 	if (invalidEmail($email) !== false)
 	{

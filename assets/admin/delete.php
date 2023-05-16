@@ -1,5 +1,8 @@
 <?php
 include_once "../includes/dbh.inc.php";
+if(empty($conn)){
+	$conn = new stdClass();
+}
 if (isset($_GET["id"])) {
 	$sql = "DELETE FROM books WHERE id ='" . $_GET["id"] . "'";
 	if (mysqli_query($conn, $sql)) {

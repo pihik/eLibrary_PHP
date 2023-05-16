@@ -1,6 +1,9 @@
 <?php
 
 include_once "../includes/dbh.inc.php";
+if(empty($conn)){
+    $conn = new stdClass();
+}
 
 if (isset($_POST["update"]))
 {

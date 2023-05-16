@@ -1,5 +1,8 @@
 <?php
 	include_once "assets/includes/dbh.inc.php";
+	if(empty($conn)){
+		$conn = new stdClass();
+	}
 	if (isset($_GET["genre"]))
 	{
 		$sql = "SELECT * FROM books WHERE genre = '" . $_GET['genre'] . "' ORDER BY id DESC;";

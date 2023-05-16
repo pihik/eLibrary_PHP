@@ -50,26 +50,19 @@ if (isset($_POST["submit"]))
                         header("Location: ../../shop.php?upload=empty");
                         exit();
                     } else {
-                        $sql = "SELECT * FROM books;";
-                        $stmt = mysqli_stmt_init($conn);
+						if(empty($conn)){
+							$conn = new stdClass();
+						}
+                        $sql = "INSERT INTO books (title, genre, author, price, imgName)VALUES (?, ?, ?, ?, ?);";
+	                    $stmt = mysqli_stmt_init($conn);
                         if (!mysqli_stmt_prepare($stmt, $sql)) {
                             echo "SQL statement failed";
                         } else {
+                            mysqli_stmt_bind_param($stmt, "sssss", $title, $genre, $author, $price, $imageFullName);
                             mysqli_stmt_execute($stmt);
-                            $result = mysqli_stmt_get_result($stmt);
-                            $rowCount = mysqli_num_rows($result);
-                            //$setImageOrder = $rowCount + 1;
 
-                            $sql = "INSERT INTO books (title, genre, author, price, imgName)VALUES (?, ?, ?, ?, ?);";
-                            if (!mysqli_stmt_prepare($stmt, $sql)) {
-                                echo "SQL statement failed";
-                            } else {
-                                mysqli_stmt_bind_param($stmt, "sssss", $title, $genre, $author, $price, $imageFullName); //$setImageOrder);
-                                mysqli_stmt_execute($stmt);
-
-                                move_uploaded_file($fileTempName, $fileDestination);
-                                header("Location: ../../shop.php?upload=success");
-                            }
+                            move_uploaded_file($fileTempName, $fileDestination);
+                            header("Location: ../../shop.php?upload=success");
                         }
                     }
                 }

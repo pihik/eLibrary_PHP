@@ -1,5 +1,8 @@
 <?php
 	include_once "C:/xampp/htdocs/eLibrary_PHP/assets/includes/dbh.inc.php";
+	if(empty($conn)){
+		$conn = new stdClass();
+	}
 	$sql = "SELECT * FROM genres ORDER BY genre;";
 	$stmt = mysqli_stmt_init($conn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {

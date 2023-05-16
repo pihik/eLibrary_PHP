@@ -3,6 +3,9 @@
 
 <?php
 	include_once "assets/includes/dbh.inc.php";
+	if(empty($conn)){
+		$conn = new stdClass();
+	}
 
 	$result = mysqli_query($conn, "SELECT * FROM books WHERE id='" . $_GET['id'] . "'");
 	$row = mysqli_fetch_array($result);
